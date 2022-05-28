@@ -8,7 +8,7 @@ $second= hash("sha256", $_POST["password"]);
 
 $query = $mysqli->prepare("Select user_id from users where email = ? AND password = ?");
 
-$query->bind_param("ss", $email, $password);
+$query->bind_param("ss", $first, $second);
 $query->execute();
 $query->store_result();
 
