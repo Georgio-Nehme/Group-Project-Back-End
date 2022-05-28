@@ -6,7 +6,7 @@ include("connection.php");
 $first=$_POST["email"];
 $second= hash("sha256", $_POST["password"]);
 
-$query = $mysqli->prepare("Select user_id from users where email = ? AND password = ?");
+$query = $mysqli->prepare("Select user_id from users where email=? AND password=?");
 
 $query->bind_param("ss", $first, $second);
 $query->execute();
@@ -22,6 +22,7 @@ if($num_rows == 0){
     $response["response"] = "Logged in";
     $response["user_id"] = $id;
 }
-$json == json_encode($response);
+
+$json = json_encode($response);
 echo $json;
 ?>
