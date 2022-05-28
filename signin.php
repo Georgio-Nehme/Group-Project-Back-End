@@ -4,20 +4,24 @@ include("connection.php");
 
 
 $first=$_POST["email"];
-$second=$_POST["password"];
+$second= hash("sha256", $_POST["password"]);
 
-$sql="select * from users where email='".$first."' AND password='".$password"' limit 1";  
-$login=$mysqli($sql);
+$query = $mysqli->prepare("Select user_id from users where email = ? AND password = ?");
 
-if (mysql_num_rows($login)==1) {
-    echo "You have successfully logged in!";
-    exit();
-   }
-   
-   
-   else {
-    echo "You have entered wrong username or password" ;
-    exit();
-   }
+$query->bind_param("ss", $email, $password);
+$query->execute();
+$query->store_result();
 
-   ?>   
+$num_rows = $query->num_rows;
+$query->bind_result($id);
+$query->fetch();
+$response = [];
+if($num_rows == 0){
+    $response["response"] = "User Not Found";
+}else{
+    $response["response"] = "Logged in";
+    $response["user_id"] = $id;
+}
+$json == json_encode($response);
+echo $json;
+?>
