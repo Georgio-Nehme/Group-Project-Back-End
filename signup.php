@@ -16,3 +16,5 @@ $hashed_password=password_hash($fifth,PASSWORD_DEFAULT);
 $query=$mysqli ->prepare("INSERT INTO users(sname,fname,phone_number,email,type,city,password) VALUES (?,?,?,?,?,?,?)");
 $query ->bind_param("ssissss",$first,$second,$third,$fourth,$sixth,$seventh,$hashed_password);
 $query ->execute();
+
+?>

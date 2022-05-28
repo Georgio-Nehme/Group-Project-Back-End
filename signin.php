@@ -19,3 +19,5 @@ if (mysql_num_rows($login)==1) {
     echo "You have entered wrong username or password" ;
     exit();
    }
+
+   ?>   
