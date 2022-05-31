@@ -2,10 +2,10 @@
 
 include("connection.php");
 
-$first=$_POST["rest_name"];
+$first=$_POST["rest_reviewed_id"];
 
 
-$query=$mysqli->prepare("DELETE FROM reviews where rest_reviewed_name=?");
+$query=$mysqli->prepare("DELETE FROM reviews where rest_reviewed_id=?");
 $query->bind_param("s",$first);
 $query->execute();
 
