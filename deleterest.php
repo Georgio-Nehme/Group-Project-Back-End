@@ -7,7 +7,7 @@ $first=$_POST["rest_name"];
 
 
 
-$query=$mysqli->prepare("DELETE FROM restuarants where rest_name=?");
+$query=$mysqli->prepare("DELETE FROM restaurants where rest_name=?");
 $query->bind_param("s",$first);
 $query->execute();
 
@@ -16,5 +16,5 @@ $response["sucess"]=true;
 echo $query->error;
 echo json_encode($response);
 
-//bool 
+//done
 ?>

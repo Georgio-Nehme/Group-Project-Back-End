@@ -2,10 +2,10 @@
 
 include("connection.php");
 
-$first=$_POST["rest_reviewed_name"];
+$first=$_POST["rest_id"];
 
-$query=$mysqli->prepare("SELECT review from reviews where rest_reviewed_name=?");
-$query->bind_param("s",$first);
+$query=$mysqli->prepare("SELECT review from reviews where rest_reviewed_id=?");
+$query->bind_param("i",$first);
 $query->execute();
 $array = $query->get_result();
 $response = [];
